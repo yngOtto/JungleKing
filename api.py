@@ -1,8 +1,8 @@
-api_key = "RGAPI-535a0fc6-9e31-4109-8fe7-b40992ccfda5"
+import requests
+api_key = ""
 
 api_url = " https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/otto%20from%20asylum"
 
-import requests
 
 requests.get(api_url)
 
