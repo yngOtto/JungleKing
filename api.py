@@ -11,3 +11,5 @@ api_url = api_url + "?api_key=" + api_key
 resp = requests.get(api_url)
 
 player_info = resp.json()
+
+print(player_info)
