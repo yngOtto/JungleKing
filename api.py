@@ -15,3 +15,5 @@ player_info = resp.json()
 print(player_info)
 
 summoner_name = player_info["name"]
+
+summoner_level = player_info["summonerLevel"]
