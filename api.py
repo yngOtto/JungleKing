@@ -13,3 +13,5 @@ resp = requests.get(api_url)
 player_info = resp.json()
 
 print(player_info)
+
+summoner_name = player_info["name"]
