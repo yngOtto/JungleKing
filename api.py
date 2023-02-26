@@ -17,3 +17,9 @@ print(player_info)
 summoner_name = player_info["name"]
 
 summoner_level = player_info["summonerLevel"]
+
+print(summoner_name)
+
+print(summoner_level)
+
+# Path: api.py
