@@ -22,4 +22,4 @@ print(summoner_name)
 
 print(summoner_level)
 
-# Path: api.py
+json_data = resp.json()
