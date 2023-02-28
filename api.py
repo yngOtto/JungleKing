@@ -46,3 +46,8 @@ def get_summoner_level(summoner_name):
 def get_summoner_id(summoner_name):
     summoner_id = player_info["id"]
     return summoner_id
+
+
+def get_account_id(summoner_name):
+    account_id = player_info["accountId"]
+    return account_id
