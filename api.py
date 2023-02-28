@@ -31,3 +31,13 @@ def get_summoner_info(summoner_name):
     resp = requests.get(api_url)
     player_info = resp.json()
     return player_info
+
+
+def get_summoner_name(summoner_name):
+    summoner_name = player_info["name"]
+    return summoner_name
+
+
+def get_summoner_level(summoner_name):
+    summoner_level = player_info["summonerLevel"]
+    return summoner_level
