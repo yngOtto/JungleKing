@@ -59,3 +59,6 @@ def get_summoner_info(summoner_name):
     resp = requests.get(api_url)
     player_info = resp.json()
     return player_info
+
+
+x = get_summoner_info("otto from asylum")
