@@ -1,4 +1,11 @@
 import requests
+
+from riotwatcher import LolWatcher, ApiError
+
+lol_watcher = LolWatcher('')
+
+my_region = 'euw1'
+
 api_key = ""
 
 api_url = " https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/otto%20from%20asylum"
@@ -64,3 +71,18 @@ def get_summoner_info(summoner_name):
 x = get_summoner_info("otto from asylum")
 
 getsummonername = get_summoner_name("otto from asylum")
+
+
+try:
+    response = lol_watcher.summoner.by_name(
+        my_region, 'this_is_probably_not_anyones_summoner_name')
+except ApiError as err:
+    if err.response.status_code == 429:
+        print('We should retry in {} seconds.'.format(
+            err.response.headers['Retry-After']))
+        print('this retry-after is handled by default by the RiotWatcher library')
+        print('future requests wait until the retry-after time passes')
+    elif err.response.status_code == 404:
+        print('Summoner with that ridiculous name not found.')
+    else:
+        raise
