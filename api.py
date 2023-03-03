@@ -6,6 +6,9 @@ lol_watcher = LolWatcher('')
 
 my_region = 'euw1'
 
+me = lol_watcher.summoner.by_name(my_region, 'otto from asylum')
+print(me)
+
 api_key = ""
 
 api_url = " https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/otto%20from%20asylum"
