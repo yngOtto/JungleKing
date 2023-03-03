@@ -9,6 +9,9 @@ my_region = 'euw1'
 me = lol_watcher.summoner.by_name(my_region, 'otto from asylum')
 print(me)
 
+my_ranked_stats = lol_watcher.league.by_summoner(my_region, me['id'])
+print(my_ranked_stats)
+
 api_key = ""
 
 api_url = " https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/otto%20from%20asylum"
