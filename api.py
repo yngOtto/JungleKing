@@ -62,3 +62,5 @@ def get_summoner_info(summoner_name):
 
 
 x = get_summoner_info("otto from asylum")
+
+getsummonername = get_summoner_name("otto from asylum")
