@@ -92,3 +92,11 @@ except ApiError as err:
         print('Summoner with that ridiculous name not found.')
     else:
         raise
+
+
+def api_request(url):
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return None
