@@ -100,3 +100,9 @@ def api_request(url):
         return response.json()
     else:
         return None
+
+
+def league_request(summoner_id):
+    url = 'https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/{}?api_key={}'.format(
+        summoner_id, api_key)
+    return api_request(url)
