@@ -106,3 +106,9 @@ def league_request(summoner_id):
     url = 'https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/{}?api_key={}'.format(
         summoner_id, api_key)
     return api_request(url)
+
+
+try:
+    assert league_request('this_is_probably_not_anyones_summoner_id') == None
+except AssertionError:
+    print('Summoner with that ridiculous name not found.')
