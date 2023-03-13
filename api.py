@@ -112,3 +112,15 @@ try:
     assert league_request('this_is_probably_not_anyones_summoner_id') == None
 except AssertionError:
     print('Summoner with that ridiculous name not found.')
+
+
+def error_handling(error):
+    if error.response.status_code == 429:
+        print('We should retry in {} seconds.'.format(
+            error.response.headers['Retry-After']))
+        print('this retry-after is handled by default by the RiotWatcher library')
+        print('future requests wait until the retry-after time passes')
+    elif error.response.status_code == 404:
+        print('Summoner with that ridiculous name not found.')
+    else:
+        raise
