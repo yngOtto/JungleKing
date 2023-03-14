@@ -124,3 +124,12 @@ def error_handling(error):
         print('Summoner with that ridiculous name not found.')
     else:
         raise
+
+
+def league_request(summoner_id):
+    url = 'https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/{}?api_key={}'.format(
+        summoner_id, api_key)
+    try:
+        return api_request(url)
+    except ApiError as err:
+        error_handling(err)
