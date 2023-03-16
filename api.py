@@ -22,6 +22,14 @@ api_key = ""
 api_url = " https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/otto%20from%20asylum"
 
 
+champ_dict = {}
+for key in static_champ_list['data']:
+    row = static_champ_list['data'][key]
+    champ_dict[row['key']] = row['id']
+for row in participants:
+    print(str(row['champion']) + ' ' + champ_dict[str(row['champion'])])
+    row['championName'] = champ_dict[str(row['champion'])]
+
 requests.get(api_url)
 
 api_url = api_url + "?api_key=" + api_key
