@@ -6,6 +6,11 @@ lol_watcher = LolWatcher('')
 
 my_region = 'euw1'
 
+latest = lol_watcher.data_dragon.versions_for_region(my_region)[
+    'n']['champion']
+
+static_champ_list = lol_watcher.data_dragon.champions(latest, False, 'en_US')
+
 me = lol_watcher.summoner.by_name(my_region, 'otto from asylum')
 print(me)
 
