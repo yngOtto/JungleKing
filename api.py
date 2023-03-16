@@ -30,6 +30,10 @@ for row in participants:
     print(str(row['champion']) + ' ' + champ_dict[str(row['champion'])])
     row['championName'] = champ_dict[str(row['champion'])]
 
+# dataframe print
+df = pd.DataFrame(participants)
+df
+
 requests.get(api_url)
 
 api_url = api_url + "?api_key=" + api_key
