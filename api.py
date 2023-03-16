@@ -34,6 +34,13 @@ for row in participants:
 df = pd.DataFrame(participants)
 df
 
+(MID_LANE, SOLO): MIDDLE
+(TOP_LANE, SOLO): TOP
+(BOT_LANE, DUO_CARRY): BOTTOM
+(BOT_LANE, DUO_SUPPORT): UTILITY
+(JUNGLE, NONE): JUNGLE
+
+
 requests.get(api_url)
 
 api_url = api_url + "?api_key=" + api_key
