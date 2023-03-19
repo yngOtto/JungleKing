@@ -41,6 +41,21 @@ df
 (JUNGLE, NONE): JUNGLE
 
 
+def get_lane(role, lane):
+    if lane == MID_LANE and role == SOLO:
+        return MIDDLE
+    elif lane == TOP_LANE and role == SOLO:
+        return TOP
+    elif lane == BOT_LANE and role == DUO_CARRY:
+        return BOTTOM
+    elif lane == BOT_LANE and role == DUO_SUPPORT:
+        return UTILITY
+    elif lane == JUNGLE and role == NONE:
+        return JUNGLE
+    else:
+        return 'NONE'
+
+
 requests.get(api_url)
 
 api_url = api_url + "?api_key=" + api_key
