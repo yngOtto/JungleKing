@@ -57,6 +57,7 @@ def get_lane(role, lane):
 
 
 df['lane'] = df.apply(lambda row: get_lane(row['role'], row['lane']), axis=1)
+df
 
 
 requests.get(api_url)
