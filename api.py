@@ -40,6 +40,17 @@ df
 (BOT_LANE, DUO_SUPPORT): UTILITY
 (JUNGLE, NONE): JUNGLE
 
+a = df['lane'] == MID_LANE
+b = df['role'] == SOLO
+c = df['lane'] == TOP_LANE
+d = df['role'] == SOLO
+e = df['lane'] == BOT_LANE
+f = df['role'] == DUO_CARRY
+g = df['lane'] == BOT_LANE
+h = df['role'] == DUO_SUPPORT
+i = df['lane'] == JUNGLE
+j = df['role'] == NONE
+
 
 def get_lane(role, lane):
     if lane == MID_LANE and role == SOLO:
