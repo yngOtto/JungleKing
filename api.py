@@ -51,6 +51,20 @@ h = df['role'] == DUO_SUPPORT
 i = df['lane'] == JUNGLE
 j = df['role'] == NONE
 
+for row in df:
+    if a and b:
+        df['lane'] = MIDDLE
+    elif c and d:
+        df['lane'] = TOP
+    elif e and f:
+        df['lane'] = BOTTOM
+    elif g and h:
+        df['lane'] = UTILITY
+    elif i and j:
+        df['lane'] = JUNGLE
+    else:
+        df['lane'] = 'NONE'
+
 
 def get_lane(role, lane):
     if lane == MID_LANE and role == SOLO:
