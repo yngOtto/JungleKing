@@ -84,6 +84,8 @@ def get_lane(role, lane):
 df['lane'] = df.apply(lambda row: get_lane(row['role'], row['lane']), axis=1)
 df
 
+p = df['lane'] == MIDDLE
+
 s = requests.Session()
 s.headers.update({'X-Riot-Token': api_key})
 requests.get(api_url)
