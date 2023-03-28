@@ -83,3 +83,6 @@ def get_account_id(summoner_name):
 summoner_info = get_summoner_info(summoner_name)
 summoner_name = get_summoner_name(summoner_name)
 summoner_level = get_summoner_level(summoner_name)
+summoner_id = get_summoner_id(summoner_name)
+account_id = get_account_id(summoner_name)
+print(summoner_name)
