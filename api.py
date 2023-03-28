@@ -90,3 +90,5 @@ print(summoner_name)
 # Get match history using the Riot API
 api_url = "https: // euw1.api.
 [...]
+
+riotgames.com/lol/match/v4/matchlists/by-account/4
