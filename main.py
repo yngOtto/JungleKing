@@ -89,3 +89,10 @@ summoner_level = get_summoner_level(summoner_info)
 summoner_id = get_summoner_id(summoner_info)
 account_id = get_account_id(summoner_info)
 print(summoner_name)
+
+# Get match history using Riot API
+api_url = "https://euw1.api.riotgames.com/lol/match/v4/matchlists/by-account/" + account_id
+api_url = api_url + "?api_key=" + api_key
+resp = requests.get(api_url)
+match_history = resp.json()
+print(match_history)
