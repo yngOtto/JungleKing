@@ -103,3 +103,15 @@ api_url = api_url + "?api_key=" + api_key
 resp = requests.get(api_url)
 ranked_stats = resp.json()
 print(ranked_stats)
+
+# Function for getting match history of a summoner
+
+
+def get_match_history(summoner_name):
+    summoner_info = get_summoner_info(summoner_name)
+    account_id = get_account_id(summoner_name)
+    api_url = "https://euw1.api.riotgames.com/lol/match/v4/matchlists/by-account/" + account_id
+    api_url = api_url + "?api_key=" + api_key
+    resp = requests.get(api_url)
+    match_history = resp.json()
+    return match_history
