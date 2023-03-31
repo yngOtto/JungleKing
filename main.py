@@ -120,3 +120,14 @@ def get_match_history(summoner_name):
 # Get match history of a summoner
 match_history = get_match_history(summoner_name)
 print(match_history)
+
+# Defining function to get detailed match info via Riot API
+
+
+def get_match_info(match_id):
+    api_url = "https://euw1.api.riotgames.com/lol/match/v4/matches/" + \
+        str(match_id)
+    api_url = api_url + "?api_key=" + api_key
+    resp = requests.get(api_url)
+    match_info = resp.json()
+    return match_info
