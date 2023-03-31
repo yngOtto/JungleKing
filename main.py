@@ -115,3 +115,8 @@ def get_match_history(summoner_name):
     resp = requests.get(api_url)
     match_history = resp.json()
     return match_history
+
+
+# Get match history of a summoner
+match_history = get_match_history(summoner_name)
+print(match_history)
