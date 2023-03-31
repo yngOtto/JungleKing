@@ -80,3 +80,12 @@ def get_summoner_id(player_info):
 def get_account_id(player_info):
     account_id = player_info["accountId"]
     return account_id
+
+
+# Get summoner info via Riot API
+summoner_info = get_summoner_info(summoner_name, region, api_key)
+summoner_name = get_summoner_name(summoner_info)
+summoner_level = get_summoner_level(summoner_info)
+summoner_id = get_summoner_id(summoner_info)
+account_id = get_account_id(summoner_info)
+print(summoner_name)
