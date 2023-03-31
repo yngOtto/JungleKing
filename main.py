@@ -96,3 +96,10 @@ api_url = api_url + "?api_key=" + api_key
 resp = requests.get(api_url)
 match_history = resp.json()
 print(match_history)
+
+# Get ranked stats using Riot API
+api_url = "https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/" + summoner_id
+api_url = api_url + "?api_key=" + api_key
+resp = requests.get(api_url)
+ranked_stats = resp.json()
+print(ranked_stats)
