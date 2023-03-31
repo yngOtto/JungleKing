@@ -131,3 +131,9 @@ def get_match_info(match_id):
     resp = requests.get(api_url)
     match_info = resp.json()
     return match_info
+
+
+#  Get detailed match info for 1st match in history via Riot API
+match_id = match_history['matches'][0]['gameId']
+match_info = get_match_info(match_id)
+print(match_info)
