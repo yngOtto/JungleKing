@@ -9,13 +9,15 @@ In addition to the Riot API key, you will need to install the following Python p
 requests
 riotwatcher
 pandas
+
 Usage
 To use this code, follow these steps:
 
-Clone the repository to your local machine.
-Open the Python file and replace the value of the api_key variable with your own Riot API key.
-Modify the summoner_name and region variables to match the summoner you want to extract data for and their respective region.
-Run the code to extract data on the summoner's match history, ranked statistics, and individual matches.
+Replace the empty string for 'api_key' variable with your Riot API key.
+Replace the 'region' variable with the region you want to access data for.
+Replace 'summoner_name' with the summoner name you want to retrieve data for.
+Run the script.
+
 License
 This code is released under the MIT License.
 
