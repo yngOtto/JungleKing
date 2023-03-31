@@ -121,6 +121,33 @@ def get_match_history(summoner_name):
 match_history = get_match_history(summoner_name)
 print(match_history)
 
+# Get match info of enemy Jungler using Riot API
+
+
+def get_match_info_jungler(match_id, region, api_key):
+    api_url = f"https://{region}.api.riotgames.com/lol/match/v4/matches/{match_id}?api_key={api_key}"
+    resp = requests.get(api_url)
+    match_info = resp.json()
+
+    # Extract information about the enemy team composition
+    enemy_team = [participant for participant in match_info['participants']
+                  if participant['teamId'] != match_info['participantIdentities'][0]['participantId']]
+    enemy_jungler = [participant for participant in enemy_team if participant['timeline']
+                     ['role'] == 'NONE' and participant['timeline']['lane'] == 'JUNGLE']
+
+    # Store information about the enemy Jungler in a dictionary
+    jungler_info = {}
+    if enemy_jungler:
+        jungler_info['name'] = champion_data['data'][str(
+            enemy_jungler[0]['championId'])]['name']
+        jungler_info['stats'] = match_info['participants'][enemy_jungler[0]
+                                                           ['participantId'] - 1]['stats']
+        jungler_info['timeline'] = match_info['participants'][enemy_jungler[0]
+                                                              ['participantId'] - 1]['timeline']
+
+    return jungler_info
+
+
 # Defining function to get detailed match info via Riot API
 
 
