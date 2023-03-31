@@ -137,3 +137,25 @@ def get_match_info(match_id):
 match_id = match_history['matches'][0]['gameId']
 match_info = get_match_info(match_id)
 print(match_info)
+
+# Function for getting win rate of a summoner in ranked soloQ games
+
+
+def get_win_rate(summoner_name):
+    summoner_info = get_summoner_info(summoner_name)
+    summoner_id = get_summoner_id(summoner_name)
+    ranked_stats = lol_watcher.league.by_summoner(my_region, summoner_id)
+    wins = 0
+    losses = 0
+    for queue in ranked_stats:
+        if queue['queueType'] == 'RANKED_SOLO_5x5':
+            wins = queue['wins']
+            losses = queue['losses']
+        break
+    win_rate = wins / (wins + losses)
+    return win_rate
+
+
+# Get winrate for summoner in rnked soloQ games
+win_rate = get_win_rate(summoner_name)
+print(win_rate)
