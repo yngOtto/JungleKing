@@ -186,3 +186,7 @@ def get_win_rate(summoner_name):
 # Get winrate for summoner in rnked soloQ games
 win_rate = get_win_rate(summoner_name)
 print(win_rate)
+
+# Get the enemy jungler's champion name
+enemy_jungler_name = champion_data['data'][str(enemy_jungler_id)]['name']
+print(enemy_jungler_name)
