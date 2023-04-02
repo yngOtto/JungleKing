@@ -190,3 +190,8 @@ print(win_rate)
 # Get the enemy jungler's champion name
 enemy_jungler_name = champion_data['data'][str(enemy_jungler_id)]['name']
 print(enemy_jungler_name)
+
+# Get the enemy jungler's champion win rate
+enemy_jungler_win_rate = champion_data['data'][str(
+    enemy_jungler_id)]['stats']['winRate']
+print(enemy_jungler_win_rate)
