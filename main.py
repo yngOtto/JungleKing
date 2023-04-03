@@ -200,3 +200,66 @@ print(enemy_jungler_win_rate)
 enemy_jungler_pick_rate = champion_data['data'][str(
     enemy_jungler_id)]['stats']['pickRate']
 print(enemy_jungler_pick_rate)
+
+# Analyze enemy jungler's pathing
+
+
+def analyze_enemy_jungler_pathing(summoner_name, api_key, region):
+    # Get match history using Riot API
+    api_url = f"https://{region}.api.riotgames.com/lol/match/v4/matchlists/by-account/{get_account_id(summoner_name)}?api_key={api_key}"
+    resp = requests.get(api_url)
+    match_history = resp.json()
+
+    # Get list of matches where summoner played as a jungler
+    jungler_matches = []
+    for match in match_history['matches']:
+        if match['queue'] == 420 and match['role'] == 'JUNGLE':
+            jungler_matches.append(match['gameId'])
+
+    # Analyze each match where summoner played as a jungler
+    for match_id in jungler_matches:
+        # Get match info using Riot API
+        api_url = f"https://{region}.api.riotgames.com/lol/match/v4/matches/{match_id}?api_key={api_key}"
+        resp = requests.get(api_url)
+        match_info = resp.json()
+
+        # Find the enemy jungler's participant ID
+        enemy_team = [participant for participant in match_info['participants']
+            if participant['teamId'] != match_info['participantIdentities'][0]['participantId']]
+        enemy_jungler = [participant for participant in enemy_team if participant['timeline']
+            ['role'] == 'NONE' and participant['timeline']['lane'] == 'JUNGLE'][0]
+        enemy_jungler_id = enemy_jungler['participantId']
+
+        # Analyze the enemy jungler's movements
+        pathing = []
+        for frame in match_info['timeline']['frames']:
+            for event in frame['events']:
+                if event['type'] == 'CHAMPION_KILL' and event['killerId'] == enemy_jungler_id:
+                    pathing.append(
+                        (event['position']['x'], event['position']['y']))
+        if len(pathing) > 0:
+            print(f"Enemy jungler pathing in match {match_id}:")
+            for i, point in enumerate(pathing):
+                print(f"  {i+1}. {point}")
+            print("")
+
+            # Analyze the pathing to find weaknesses
+            if len(pathing) >= 2:
+                start = pathing[0]
+                end = pathing[-1]
+                mid = pathing[len(pathing)//2]
+                print(f"Weaknesses to exploit:")
+                if abs(start[0] - end[0]) > abs(start[1] - end[1]):
+                    # Enemy jungler traveled more horizontally than vertically
+                    if mid[1] < start[1]:
+                        print("- Invade their bottom-side jungle early")
+                    elif mid[1] > start[1]:
+                        print("- Invade their top-side jungle early")
+                else:
+                    # Enemy jungler traveled more vertically than horizontally
+                    if mid[0] < start[0]:
+                        print("- Invade their right-side jungle early")
+                    elif mid[0] > start[0]:
+                        print("- Invade their left-side jungle early")
+            else:
+                print("Not
