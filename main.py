@@ -195,3 +195,8 @@ print(enemy_jungler_name)
 enemy_jungler_win_rate = champion_data['data'][str(
     enemy_jungler_id)]['stats']['winRate']
 print(enemy_jungler_win_rate)
+
+# Get the enemy jungler's champion pick rate
+enemy_jungler_pick_rate = champion_data['data'][str(
+    enemy_jungler_id)]['stats']['pickRate']
+print(enemy_jungler_pick_rate)
