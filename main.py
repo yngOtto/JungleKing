@@ -262,4 +262,4 @@ def analyze_enemy_jungler_pathing(summoner_name, api_key, region):
                     elif mid[0] > start[0]:
                         print("- Invade their left-side jungle early")
             else:
-                print("Not
+                print("Not able")
