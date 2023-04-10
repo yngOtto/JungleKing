@@ -225,9 +225,9 @@ def analyze_enemy_jungler_pathing(summoner_name, api_key, region):
 
         # Find the enemy jungler's participant ID
         enemy_team = [participant for participant in match_info['participants']
-            if participant['teamId'] != match_info['participantIdentities'][0]['participantId']]
+                      if participant['teamId'] != match_info['participantIdentities'][0]['participantId']]
         enemy_jungler = [participant for participant in enemy_team if participant['timeline']
-            ['role'] == 'NONE' and participant['timeline']['lane'] == 'JUNGLE'][0]
+                         ['role'] == 'NONE' and participant['timeline']['lane'] == 'JUNGLE'][0]
         enemy_jungler_id = enemy_jungler['participantId']
 
         # Analyze the enemy jungler's movements
@@ -262,4 +262,4 @@ def analyze_enemy_jungler_pathing(summoner_name, api_key, region):
                     elif mid[0] > start[0]:
                         print("- Invade their left-side jungle early")
             else:
-                print("Not able to identify pathing to analyze")
+                print("Not  enough data to analyze pathing!")
