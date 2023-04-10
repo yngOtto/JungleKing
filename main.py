@@ -258,7 +258,7 @@ def analyze_enemy_jungler_pathing(summoner_name, api_key, region):
                 else:
                     # Enemy jungler traveled more vertically than horizontally
                     if mid[0] < start[0]:
-                        print("- Invade their right-side jungle early")
+                        print("- Invade their right side jungle early")
                     elif mid[0] > start[0]:
                         print("- Invade their left-side jungle early")
             else:
