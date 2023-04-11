@@ -218,7 +218,7 @@ def analyze_enemy_jungler_pathing(summoner_name, api_key, region):
 
     # Analyze each match where summoner played as a jungler
     for match_id in jungler_matches:
-        # Get match info using Riot API
+        # Getting match info using Riot API
         api_url = f"https://{region}.api.riotgames.com/lol/match/v4/matches/{match_id}?api_key={api_key}"
         resp = requests.get(api_url)
         match_info = resp.json()
