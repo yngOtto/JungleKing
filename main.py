@@ -2,14 +2,10 @@ import requests
 from riotwatcher import LolWatcher, ApiError
 import pandas as pd
 import configparser
+import os
 
 # create a configuration parser object
 config = configparser.ConfigParser()
-
-
-# TODO: create a config file to store the API key,
-#       and read the API key from the config file
-#       instead of hardcoding it in the script
 
 # initialize the API and region
 api_key = ""
@@ -29,13 +25,13 @@ print(summoner_info)
 ranked_stats = lol_watcher.league.by_summoner(region, summoner_info['id'])
 print(ranked_stats)
 
-# Map the champion IDs to their names
+# map the champjon IDs to their names
 champ_dict = {}
 for champ_key in champion_data['data']:
     row = champion_data['data'][champ_key]
     champ_dict[row['key']] = row['id']
 
-# Print list of plyrs with champ names
+# print list of plyrs with champ names
 participants = []
 for row in participants:
     champ_id = str(row['champion'])
@@ -43,12 +39,12 @@ for row in participants:
 print(champ_id + ' ' + champ_name)
 row['championName'] = champ_name
 
-# Standarize lane and role info
+# standarize lane and role info
 df = pd.DataFrame(participants)
 df['lane'] = df.apply(lambda row: get_lane(row['role'], row['lane']), axis=1)
 print(df)
 
-# Get summoner info using Riot API
+# get summoner info using Riot API
 api_url = f"https://{region}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{summoner_name}"
 s = requests.Session()
 s.headers.update({'X-Riot-Token': api_key})
@@ -59,7 +55,7 @@ summoner_level = player_info["summonerLevel"]
 print(summoner_name)
 print(summoner_level)
 
-# Defining functions to allow retreival of summoner info from Riot API
+# defing functions to allow retreival of summoner info from Riot API
 
 
 def get_summoner_info(summoner_name, region, api_key):
@@ -91,7 +87,7 @@ def get_account_id(player_info):
     return account_id
 
 
-# Get summoner info via Riot API
+# get summoner info via Riot API
 summoner_info = get_summoner_info(summoner_name, region, api_key)
 summoner_name = get_summoner_name(summoner_info)
 summoner_level = get_summoner_level(summoner_info)
@@ -99,7 +95,7 @@ summoner_id = get_summoner_id(summoner_info)
 account_id = get_account_id(summoner_info)
 print(summoner_name)
 
-# Get match history using Riot API
+# get match history using Riot API
 api_url = "https://euw1.api.riotgames.com/lol/match/v4/matchlists/by-account/" + account_id
 api_url = api_url + "?api_key=" + api_key
 resp = requests.get(api_url)
