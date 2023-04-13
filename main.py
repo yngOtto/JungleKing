@@ -1,19 +1,28 @@
 import requests
 from riotwatcher import LolWatcher, ApiError
 import pandas as pd
+import configparser
 
-# Initialize the API and region
+# create a configuration parser object
+config = configparser.ConfigParser()
+
+
+# TODO: create a config file to store the API key,
+#       and read the API key from the config file
+#       instead of hardcoding it in the script
+
+# initialize the API and region
 api_key = ""
 lol_watcher = LolWatcher(api_key)
 region = 'euw1'
 
-# Get the latest champion version and list of champions
+# get the latest champion version and list of champions
 latest_version = lol_watcher.data_dragon.versions_for_region(region)[
     'n']['champion']
 champion_data = lol_watcher.data_dragon.champions(
     latest_version, False, 'en_US')
 
-# Get summoner information
+# get summoner information
 summoner_name = 'otto from asylum'
 summoner_info = lol_watcher.summoner.by_name(region, summoner_name)
 print(summoner_info)
