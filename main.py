@@ -262,7 +262,7 @@ def analyze_enemy_jungler_pathing(summoner_name, api_key, region):
                 start = pathing[0]
                 end = pathing[-1]
                 mid = pathing[len(pathing)//2]
-                print(f"Weaknesses to exploit:")
+                print(f"The following weaknesses can be exploited:")
                 if abs(start[0] - end[0]) > abs(start[1] - end[1]):
                     # Enemy jungler traveled more horizontally than vertically
                     if mid[1] < start[1]:
