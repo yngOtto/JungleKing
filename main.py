@@ -34,7 +34,7 @@ print(summoner_info)
 ranked_stats = lol_watcher.league.by_summoner(region, summoner_info['id'])
 print(ranked_stats)
 
-# map the champjon IDs to their names
+# map the champjion IDs to their names
 champ_dict = {}
 for champ_key in champion_data['data']:
     row = champion_data['data'][champ_key]
