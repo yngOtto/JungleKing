@@ -13,4 +13,7 @@ export class SummonerComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getSummonerInfo(summoner_name: string, region: string, api_key: string) {
+    return this.http.get(`http://localhost:5000/summoner?summoner_name=${summoner_name}&region=${region}&api_key=${api_key}`);
+  }
 }
