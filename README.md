@@ -1,5 +1,5 @@
 # About
-Application that interacts with the Riot API to give players a competitive advantage on the Rift when playing the Jungle Role in League of Legends.
+Application that interacts with the Riot API to give players a competitive advantage on the Rift when playing the Jungle Role in League of Legends. Angular frontend. Flas backend.
 
 # Prerequisites
 Before running the code, you will need to obtain a Riot API key, which you can get by following the instructions on the Riot Developer Portal.
