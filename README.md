@@ -1,5 +1,6 @@
 # About
 Application that interacts with the Riot API to give players a competitive advantage on the Rift when playing the Jungle Role in League of Legends. 
+
 Angular frontend. Flask backend.
 
 # Prerequisites
