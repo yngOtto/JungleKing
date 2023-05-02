@@ -1,1 +1,22 @@
-<p>summoner works!</p>
+<form (submit)="onSubmit()">
+  <input
+    type="text"
+    [(ngModel)]="summoner_name"
+    name="summoner_name"
+    placeholder="Summoner Name"
+  />
+  <input type="text" [(ngModel)]="region" name="region" placeholder="Region" />
+  <input
+    type="text"
+    [(ngModel)]="api_key"
+    name="api_key"
+    placeholder="API Key"
+  />
+  <button type="submit">Get Stats</button>
+</form>
+
+<!-- Display the fetched data -->
+<div *ngIf="summonerInfo">
+  <h1>{{ summonerInfo.name }}</h1>
+  <p>Level: {{ summonerInfo.summonerLevel }}</p>
+</div>
