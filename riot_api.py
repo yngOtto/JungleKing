@@ -25,5 +25,3 @@ class RiotAPI:
     # - get_match_info_jungler()
     # - get_match_info()
     # - get_win_rate()
-    # - get_match_info_jungler()
-    # - analyze_enemy_jungler_pathing()
