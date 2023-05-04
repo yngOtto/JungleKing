@@ -32,7 +32,16 @@ class RiotAPI:
         player_info = self.get_summoner_info(summoner_name)
         return player_info['accountId']
 
-    # todo lisy:
+    def get_match_history(self, summoner_name):
+        account_id = self.get_account_id(summoner_name)
+        api_url = f"https://{self.region}.api.riotgames.com/lol/match/v4/matchlists/by-account/{account_id}"
+        s = requests.Session()
+        s.headers.update({'X-Riot-Token': self.api_key})
+        resp = s.get(api_url)
+        match_history = resp.json()
+        return match_history
+
+        # todo lisy:
     # - get_match_history()
     # - get_match_info_jungler()
     # - get_match_info()
