@@ -116,4 +116,4 @@ class RiotAPI:
     def analyze_enemy_jungler_pathing():
 
         # todo list:
-        # - analyze_enemy_jungler_pathing()
+        # - analyze_enemy_jungler_pathing() - find out where the enemy jungler is likely to be at a given time in the game
