@@ -23,9 +23,8 @@ class RiotAPI:
     def get_summoner_level(self, summoner_name):
         player_info = self.get_summoner_info(summoner_name)
         return player_info['summonerLevel']
+
     # todo lisy:
-    # - get_summoner_name()
-    # - get_summoner_level()
     # - get_summoner_id()
     # - get_account_id()
     # - get_match_history()
