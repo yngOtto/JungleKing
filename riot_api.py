@@ -77,5 +77,9 @@ class RiotAPI:
             assists += match_info['info']['participants'][0]['assists']
         return kills, deaths, assists
 
+    def get_kda_ratio(self, summoner_name):
+        kills, deaths, assists = self.get_kda(summoner_name)
+        return (kills + assists) / deaths
+
     # todo list:
     # - analyze_enemy_jungler_pathing()
