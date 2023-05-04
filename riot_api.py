@@ -81,5 +81,29 @@ class RiotAPI:
         kills, deaths, assists = self.get_kda(summoner_name)
         return (kills + assists) / deaths
 
+    def get_cs(self, summoner_name):
+        match_history = self.get_match_history(summoner_name)
+        cs = 0
+        for match in match_history['matches']:
+            match_info = self.get_match_info(match['gameId'])
+            cs += match_info['info']['participants'][0]['totalMinionsKilled']
+        return cs
+
+    def get_cs_per_min(self, summoner_name):
+        match_history = self.get_match_history(summoner_name)
+        cs = 0
+        for match in match_history['matches']:
+            match_info = self.get_match_info(match['gameId'])
+            cs += match_info['info']['participants'][0]['totalMinionsKilled']
+        return cs / len(match_history['matches'])
+
+    def get_gold(self, summoner_name):
+        match_history = self.get_match_history(summoner_name)
+        gold = 0
+        for match in match_history['matches']:
+            match_info = self.get_match_info(match['gameId'])
+            gold += match_info['info']['participants'][0]['goldEarned']
+        return gold
+
     # todo list:
     # - analyze_enemy_jungler_pathing()
