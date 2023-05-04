@@ -28,6 +28,10 @@ class RiotAPI:
         player_info = self.get_summoner_info(summoner_name)
         return player_info['id']
 
+    def get_account_id(self, summoner_name):
+        player_info = self.get_summoner_info(summoner_name)
+        return player_info['accountId']
+
     # todo lisy:
     # - get_summoner_id()
     # - get_account_id()
