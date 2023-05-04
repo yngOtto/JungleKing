@@ -41,8 +41,7 @@ class RiotAPI:
         match_history = resp.json()
         return match_history
 
-        # todo lisy:
-    # - get_match_history()
+    # todo list:
     # - get_match_info_jungler()
     # - get_match_info()
     # - get_win_rate()
