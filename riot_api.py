@@ -105,5 +105,15 @@ class RiotAPI:
             gold += match_info['info']['participants'][0]['goldEarned']
         return gold
 
-    # todo list:
-    # - analyze_enemy_jungler_pathing()
+    def get_gold_per_min(self, summoner_name):
+        match_history = self.get_match_history(summoner_name)
+        gold = 0
+        for match in match_history['matches']:
+            match_info = self.get_match_info(match['gameId'])
+            gold += match_info['info']['participants'][0]['goldEarned']
+        return gold / len(match_history['matches'])
+
+    def analyze_enemy_jungler_pathing():
+
+        # todo list:
+        # - analyze_enemy_jungler_pathing()
