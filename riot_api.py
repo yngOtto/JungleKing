@@ -113,7 +113,14 @@ class RiotAPI:
             gold += match_info['info']['participants'][0]['goldEarned']
         return gold / len(match_history['matches'])
 
-    def analyze_enemy_jungler_pathing():
+    def analyze_enemy_jungler_pathing(self, summoner_name):
+        match_history = self.get_match_history(summoner_name)
+        enemy_jungler_pathing = {}
+        for match in match_history['matches']:
+            match_info = self.get_match_info(match['gameId'])
+            enemy_jungler = match_info['info']['participants'][5]['championName']
+            enemy_jungler_pathing[enemy_jungler] = match_info['info']['participants'][5]['timeline']['lane']
+        return enemy_jungler_pathing
 
         # todo list:
         # - analyze_enemy_jungler_pathing() - find out where the enemy jungler is likely to be at a given time in the game
