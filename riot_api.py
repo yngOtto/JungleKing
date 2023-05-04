@@ -49,9 +49,36 @@ class RiotAPI:
         match_info = resp.json()
         return match_info
 
+    def get_match_info_jungler(self, match_id):
+        match_info = self.get_match_info(match_id)
+        return match_info['info']['participants'][0]
+
+    def get_win_rate(self, summoner_name):
+        match_history = self.get_match_history(summoner_name)
+        wins = 0
+        losses = 0
+        for match in match_history['matches']:
+            match_info = self.get_match_info(match['gameId'])
+            if match_info['info']['participants'][0]['win']:
+                wins += 1
+            else:
+                losses += 1
+        return wins / (wins + losses)
+
+    def get_kda(self, summoner_name):
+        match_history = self.get_match_history(summoner_name)
+        kills = 0
+        deaths = 0
+        assists = 0
+        for match in match_history['matches']:
+            match_info = self.get_match_info(match['gameId'])
+            kills += match_info['info']['participants'][0]['kills']
+            deaths += match_info['info']['participants'][0]['deaths']
+            assists += match_info['info']['participants'][0]['assists']
+        return kills, deaths, assists
+
     # todo list:
     # - get_match_info_jungler()
     # - get_win_rate()
     # - get_kda()
-    # - get_match_info_jungler()
     # - analyze_enemy_jungler_pathing()
