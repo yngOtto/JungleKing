@@ -16,6 +16,10 @@ class RiotAPI:
         player_info = resp.json()
         return player_info
 
+    def get_summoner_name(self, summoner_name):
+        player_info = self.get_summoner_info(summoner_name)
+        return player_info['name']
+
     # todo lisy:
     # - get_summoner_name()
     # - get_summoner_level()
