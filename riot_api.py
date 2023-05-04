@@ -33,8 +33,6 @@ class RiotAPI:
         return player_info['accountId']
 
     # todo lisy:
-    # - get_summoner_id()
-    # - get_account_id()
     # - get_match_history()
     # - get_match_info_jungler()
     # - get_match_info()
