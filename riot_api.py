@@ -41,9 +41,16 @@ class RiotAPI:
         match_history = resp.json()
         return match_history
 
+    def get_match_info(self, match_id):
+        api_url = f"https://{self.region}.api.riotgames.com/lol/match/v4/matches/{match_id}"
+        s = requests.Session()
+        s.headers.update({'X-Riot-Token': self.api_key})
+        resp = s.get(api_url)
+        match_info = resp.json()
+        return match_info
+
     # todo list:
     # - get_match_info_jungler()
-    # - get_match_info()
     # - get_win_rate()
     # - get_kda()
     # - get_match_info_jungler()
