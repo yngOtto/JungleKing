@@ -78,7 +78,4 @@ class RiotAPI:
         return kills, deaths, assists
 
     # todo list:
-    # - get_match_info_jungler()
-    # - get_win_rate()
-    # - get_kda()
     # - analyze_enemy_jungler_pathing()
