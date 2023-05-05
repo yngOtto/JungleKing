@@ -184,6 +184,3 @@ def print_weaknesses(self, start, mid, end):
             print("- Invade their right-side jungle early")
         elif mid[0] > start[0]:
             print("- Invade their left-side jungle early")
-
-        # todo list:
-        # - analyze_enemy_jungler_pathing() - find out where the enemy jungler is likely to be at a given time in the game
