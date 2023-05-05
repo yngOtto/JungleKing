@@ -114,14 +114,15 @@ class RiotAPI:
         return gold / len(match_history['matches'])
 
     def analyze_enemy_jungler_pathing(self, summoner_name):
-    account_id = self.get_account_id(summoner_name)
-    jungler_matches = self.get_jungler_matches(account_id)
+        account_id = self.get_account_id(summoner_name)
+        jungler_matches = self.get_jungler_matches(account_id)
 
-    for match_id in jungler_matches:
-        match_info = self.get_match_info(match_id)
-        enemy_jungler_id = self.get_enemy_jungler_id(match_info)
-        pathing = self.get_enemy_jungler_pathing(match_info, enemy_jungler_id)
-        self.print_pathing_results(match_id, pathing)
+        for match_id in jungler_matches:
+            match_info = self.get_match_info(match_id)
+            enemy_jungler_id = self.get_enemy_jungler_id(match_info)
+            pathing = self.get_enemy_jungler_pathing(
+                match_info, enemy_jungler_id)
+            self.print_pathing_results(match_id, pathing)
 
 
 def get_jungler_matches(self, account_id):
