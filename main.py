@@ -14,6 +14,8 @@ def main():
     # Use the RiotAPI instance to perform the desired tasks
     summoner_name = 'otto from asylum'
     summoner_info = riot_api.get_summoner_info(summoner_name)
+    summoner_winrate = riot_api.get_win_rate(summoner_name)
+    print((summoner_winrate))
     print(summoner_info)
 
     # Add other tasks and function calls here (todo)
@@ -21,6 +23,7 @@ def main():
     # - Get summoner's ranked stats
     # - Analyze enemy jungler's pathing
     # - Get win rate of a summoner in ranked soloQ games
+    # - Get win rate of a champion in ranked soloQ games
 
 
 if __name__ == "__main__":
