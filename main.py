@@ -18,6 +18,7 @@ def main():
 
     # Add other tasks and function calls here (todo)
     # - Get summoner's match history
+    # - Get summoner's ranked stats
     # - Analyze enemy jungler's pathing
     # - Get win rate of a summoner in ranked soloQ games
 
