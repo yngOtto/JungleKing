@@ -1,18 +1,26 @@
 import requests
 from riotwatcher import LolWatcher, ApiError
-import pandas as pd
-import configparser
 from config import get_api_key
 from riot_api import RiotAPI
 
-# create a configuration parser object
-config = configparser.ConfigParser()
 
-# read config file
-config.read('config.ini')
+def main():
+    # get API key from config.ini
+    api_key = get_api_key()
 
-# get the API key from the config file
-api_key = config['RIOT']['api_key']
+    # Create a RiotAPI instance
+    riot_api = RiotAPI(api_key, 'euw1')
 
-# use API key in the api call
-params = {'api_key': api_key}
+    # Use the RiotAPI instance to perform the desired tasks
+    summoner_name = 'otto from asylum'
+    summoner_info = riot_api.get_summoner_info(summoner_name)
+    print(summoner_info)
+
+    # Add other tasks and function calls here (todo)
+    # - Get summoner's match history
+    # - Analyze enemy jungler's pathing
+    # - Get win rate of a summoner in ranked soloQ games
+
+
+if __name__ == "__main__":
+    main()
