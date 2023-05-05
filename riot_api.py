@@ -114,65 +114,75 @@ class RiotAPI:
         return gold / len(match_history['matches'])
 
     def analyze_enemy_jungler_pathing(self, summoner_name):
-        # Get match history using Riot API
-        account_id = self.get_account_id(summoner_name)
-        api_url = f"https://{self.region}.api.riotgames.com/lol/match/v4/matchlists/by-account/{account_id}"
-        resp = requests.get(api_url, headers={'X-Riot-Token': self.api_key})
-        match_history = resp.json()
+    account_id = self.get_account_id(summoner_name)
+    jungler_matches = self.get_jungler_matches(account_id)
 
-        # Get list of matches where summoner played as a jungler
-    jungler_matches = []
-    for match in match_history['matches']:
-        if match['queue'] == 420 and match['role'] == 'JUNGLE':
-            jungler_matches.append(match['gameId'])
-
-    # Analyze each match where summoner played as a jungler
     for match_id in jungler_matches:
-        # Getting match info using Riot API
-        api_url = f"https://{region}.api.riotgames.com/lol/match/v4/matches/{match_id}?api_key={api_key}"
-        resp = requests.get(api_url)
-        match_info = resp.json()
+        match_info = self.get_match_info(match_id)
+        enemy_jungler_id = self.get_enemy_jungler_id(match_info)
+        pathing = self.get_enemy_jungler_pathing(match_info, enemy_jungler_id)
+        self.print_pathing_results(match_id, pathing)
 
-        # Find the enemy jungler's participant ID
-        enemy_team = [participant for participant in match_info['participants']
-                      if participant['teamId'] != match_info['participantIdentities'][0]['participantId']]
-        enemy_jungler = [participant for participant in enemy_team if participant['timeline']
-                         ['role'] == 'NONE' and participant['timeline']['lane'] == 'JUNGLE'][0]
-        enemy_jungler_id = enemy_jungler['participantId']
 
-        # Analyze the enemy jungler's movements
-        pathing = []
-        for frame in match_info['timeline']['frames']:
-            for event in frame['events']:
-                if event['type'] == 'CHAMPION_KILL' and event['killerId'] == enemy_jungler_id:
-                    pathing.append(
-                        (event['position']['x'], event['position']['y']))
-        if len(pathing) > 0:
-            print(f"Enemy jungler pathing in match {match_id}:")
-            for i, point in enumerate(pathing):
-                print(f"  {i+1}. {point}")
-            print("")
+def get_jungler_matches(self, account_id):
+    api_url = f"https://{self.region}.api.riotgames.com/lol/match/v4/matchlists/by-account/{account_id}"
+    resp = requests.get(api_url, headers={'X-Riot-Token': self.api_key})
+    match_history = resp.json()
 
-            # Analyze the pathing to find weaknesses
-            if len(pathing) >= 2:
-                start = pathing[0]
-                end = pathing[-1]
-                mid = pathing[len(pathing)//2]
-                print(f"The following weaknesses can be exploited:")
-                if abs(start[0] - end[0]) > abs(start[1] - end[1]):
-                    # Enemy jungler traveled more horizontally than vertically
-                    if mid[1] < start[1]:
-                        print("- Invade their bottom-side jungle early")
-                    elif mid[1] > start[1]:
-                        print("- Invade their top-side jungle early")
-                else:
-                    # Enemy jungler traveled more vertically than horizontally
-                    if mid[0] < start[0]:
-                        print("- Invade their right side jungle early")
-                    elif mid[0] > start[0]:
-                        print("- Invade their left side jungle early")
-            else:
-                print("Not  enough data to analyze pathing!")
+    return [match['gameId'] for match in match_history['matches'] if match['queue'] == 420 and match['role'] == 'JUNGLE']
+
+
+def get_match_info(self, match_id):
+    api_url = f"https://{self.region}.api.riotgames.com/lol/match/v4/matches/{match_id}"
+    resp = requests.get(api_url, headers={'X-Riot-Token': self.api_key})
+    return resp.json()
+
+
+def get_enemy_jungler_id(self, match_info):
+    enemy_team = [participant for participant in match_info['participants']
+                  if participant['teamId'] != match_info['participantIdentities'][0]['participantId']]
+    enemy_jungler = [participant for participant in enemy_team if participant['timeline']
+                     ['role'] == 'NONE' and participant['timeline']['lane'] == 'JUNGLE'][0]
+    return enemy_jungler['participantId']
+
+
+def get_enemy_jungler_pathing(self, match_info, enemy_jungler_id):
+    return [(event['position']['x'], event['position']['y']) for frame in match_info['timeline']['frames'] for event in frame['events'] if event['type'] == 'CHAMPION_KILL' and event['killerId'] == enemy_jungler_id]
+
+
+def print_pathing_results(self, match_id, pathing):
+    if len(pathing) > 0:
+        print(f"Enemy jungler pathing in match {match_id}:")
+        for i, point in enumerate(pathing):
+            print(f"  {i+1}. {point}")
+        print("")
+
+        # Analyze the pathing to find weaknesses
+        if len(pathing) >= 2:
+            start = pathing[0]
+            end = pathing[-1]
+            mid = pathing[len(pathing)//2]
+            print(f"The following weaknesses can be exploited:")
+            self.print_weaknesses(start, mid, end)
+        else:
+            print("Not enough data to analyze pathing!")
+    else:
+        print(f"No enemy jungler pathing found in match {match_id}.")
+
+
+def print_weaknesses(self, start, mid, end):
+    if abs(start[0] - end[0]) > abs(start[1] - end[1]):
+        # Enemy jungler traveled more horizontally than vertically
+        if mid[1] < start[1]:
+            print("- Invade their bottom-side jungle early")
+        elif mid[1] > start[1]:
+            print("- Invade their top-side jungle early")
+    else:
+        # Enemy jungler traveled more vertically than horizontally
+        if mid[0] < start[0]:
+            print("- Invade their right-side jungle early")
+        elif mid[0] > start[0]:
+            print("- Invade their left-side jungle early")
 
         # todo list:
         # - analyze_enemy_jungler_pathing() - find out where the enemy jungler is likely to be at a given time in the game
