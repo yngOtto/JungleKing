@@ -2,6 +2,7 @@ import requests
 from riotwatcher import LolWatcher, ApiError
 from config import get_api_key
 from riot_api import RiotAPI
+from data_processing import analyze_pathing_weaknesses
 
 
 def main():
