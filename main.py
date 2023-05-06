@@ -13,7 +13,7 @@ def main():
     riot_api = RiotAPI(api_key, 'euw1')
 
     # Use the RiotAPI instance to perform the desired tasks
-    summoner_name = 'otto from asylum'
+    summoner_name = 'palestineboy69'
     summoner_info = riot_api.get_summoner_info(summoner_name)
     summoner_winrate = riot_api.get_win_rate(summoner_name)
     print((summoner_winrate))
