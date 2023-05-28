@@ -1,21 +1,87 @@
-# About
-Application that interacts with the Riot API to give players a competitive advantage on the Rift when playing the Jungle Role in League of Legends. 
+# JungleKing
 
-Angular frontend. Flask backend.
+JungleKing is a League of Legends (LoL) application that leverages the Riot Games API to provide players with a competitive advantage when playing the Jungle role in the game. It presents key statistics and information about your summoner and others, helping you make informed decisions and strategies.
 
-# Prerequisites
-Before running the code, you will need to obtain a Riot API key, which you can get by following the instructions on the Riot Developer Portal.
+## Technologies Used
 
-# Usage
-To use this code, follow these steps:
+- Python
+- Flask
+- RiotWatcher Python library
+- Angular
 
-* Replace the empty string for 'api_key' variable with your Riot API key.
-* Replace the 'region' variable with the region you want to access data for.
-* Replace 'summoner_name' with the summoner name you want to retrieve data for.
-* Run the application.
+## Prerequisites
 
-# License
-This code is released under the MIT License.
+Before you can run the JungleKing application, you need to obtain an API key from Riot Games. You can get this key by following the instructions on the [Riot Developer Portal](https://developer.riotgames.com/).
 
-# Acknowledgements
-This code was created using the RiotWatcher Python library, which was developed by Arie van Genderen.
+Additionally, make sure you have the following software installed:
+
+- Python 3.x
+- Node.js and npm (for the Angular frontend)
+- Git
+
+## Installation and Setup
+
+1. Clone the repository to your local machine using Git:  
+   ```
+   git clone https://github.com/yngOtto/JungleKing.git
+   ```
+
+2. Navigate into the cloned repository:  
+   ```
+   cd JungleKing
+   ```
+
+3. Create a virtual environment and activate it (optional, but recommended):  
+   ```
+   python -m venv env
+   source env/bin/activate  # For Windows, use `env\Scripts\activate`
+   ```
+
+4. Install the Python dependencies:  
+   ```
+   pip install -r requirements.txt
+   ```
+
+5. Navigate to the frontend directory and install the Angular dependencies:  
+   ```
+   cd frontend
+   npm install
+   ```
+
+## Configuration
+
+Create a `config.ini` file in the root of the repository with the following structure:
+
+```
+[RIOT]
+api_key = your_riot_api_key
+```
+
+Replace `your_riot_api_key` with the API key you obtained from the Riot Developer Portal.
+
+## Running the Application
+
+1. Start the Flask backend:  
+   ```
+   python main.py
+   ```
+
+2. In a separate terminal, navigate to the frontend directory and start the Angular frontend:  
+   ```
+   cd frontend
+   npm start
+   ```
+
+3. Open your web browser and navigate to `http://localhost:4200` to view the application.
+
+## Contributing
+
+Contributions are welcome! Please read our [contributing guide](CONTRIBUTING.md) to get started.
+
+## License
+
+This project is released under the MIT License.
+
+## Acknowledgements
+
+This application was created using the RiotWatcher Python library, developed by Arie van Genderen. We thank the Riot Games team for providing their API and making applications like JungleKing possible.
