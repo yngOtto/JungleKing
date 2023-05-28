@@ -76,7 +76,6 @@ Replace `your_riot_api_key` with the API key you obtained from the Riot Develope
 
 ## Contributing
 
-Contributions are welcome! Please read our [contributing guide](CONTRIBUTING.md) to get started.
 
 ## License
 
@@ -84,4 +83,4 @@ This project is released under the MIT License.
 
 ## Acknowledgements
 
-This application was created using the RiotWatcher Python library, developed by Arie van Genderen. We thank the Riot Games team for providing their API and making applications like JungleKing possible.
+
