@@ -16,7 +16,7 @@ class RiotAPI:
             resp = s.get(api_url)
             resp.raise_for_status()  # produce an HTTPError if response was unsuccessful
         except requests.exceptions.RequestException as e:
-            print(f"Request to Riot API failed: {e}")
+            print(f"A request to Riot API failed: {e}")
             return None
         player_info = resp.json()
         return player_info
