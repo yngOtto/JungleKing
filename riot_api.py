@@ -9,11 +9,16 @@ class RiotAPI:
         self.lol_watcher = LolWatcher(api_key)
 
     def get_summoner_info(self, summoner_name):
-        api_url = f"https://{self.region}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{summoner_name}"
-        s = requests.Session()
-        s.headers.update({'X-Riot-Token': self.api_key})
-        resp = s.get(api_url)
-        player_info = resp.json()
+        api_url = f"https://{self.region}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{summoner_name}"  
+        s = requests.Session()  
+        s.headers.update({'X-Riot-Token': self.api_key})  
+        try:
+            resp = s.get(api_url)  
+            resp.raise_for_status()  # raise an HTTPError if response was unsuccessful
+        except requests.exceptions.RequestException as e:
+            print(f"Request to Riot API failed: {e}")
+            return None
+        player_info = resp.json()  
         return player_info
 
     def get_summoner_name(self, summoner_name):
